@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- style -->
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    </style>
+    <h1><u>Games:</u></h1>
+    <% for (const game of games) { %> 
+        <div class="games-section">
+            <a href="/<%= game.name %>" target="_blank">
+                    <img src="images/<%= game.name %>.jpg" alt="Minecraft"> 
+            </a>
+            <div class="desc"><%= game.name %></div>
+        </div>
+    <% } %>
+</body>
+</html>
