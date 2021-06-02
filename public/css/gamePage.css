@@ -1,0 +1,56 @@
+body {
+    background-color: rgb(0, 0, 20);
+}
+h1 {
+    text-align: center;
+    color: white;
+    font-family:cursive;
+}
+
+
+.section-center {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 13em;
+}
+
+.section-center form button {
+    background-color: black;
+    color: greenyellow;
+    height: 3.2em;
+    width: 15em;
+    font-size: 1.3em;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.section-center  form button:hover {
+    background-color:rgb(0, 0, 42);
+    transition: all 1.2s ease-in;
+    cursor: pointer;
+    border: 1em;
+    margin: 1em;
+}
+
+
+.section-center button {
+    background-color: black;
+    height: 3.2em;
+    width: 15em;
+    font-size: 1.3em;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.section-center button:hover {
+    background-color:rgb(0, 0, 42);
+    transition: all 1.2s ease-in;
+    cursor: pointer;
+    border: 1em;
+    margin: 0.8em;
+}

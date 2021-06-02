@@ -5,16 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Review</title>
+
+    <!-- style -->
+    <link rel="stylesheet" href="/css/newReview.css">
+
 </head>
 <body>
-    <h1>An anonymous review for <%= name %> </h1>
-    <form action="/:game/newReview" method="POST">
-        <input type="hidden" value="<%= name %>" name="game_name">
-        <br>
-        <input type="hidden" name="user_name" id="user_name" value="<%= randomName %> ">
-        <textarea name="review" id="review" cols="50" rows="20"></textarea>
-        <br>
-        <button type="submit">Save</button>
-    </form>
+    <h1><u><b>An anonymous review for <%= name %></b></u></h1>
+    <section class="section-center">
+        <form action="/:game/newReview" method="POST">
+            <input type="hidden" value="<%= name %>" name="game_name">
+            <br>
+            <input type="hidden" name="user_name" id="user_name" value="<%= randomName %> ">
+            <textarea name="review" id="review" cols="50" rows="8"></textarea>
+            <br>
+            <button type="submit">Save Review</button>
+        </form>
+    </section>
 </body>
 </html>
