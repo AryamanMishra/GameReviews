@@ -216,11 +216,11 @@ const Game = require('./models/game');
 // })
 
 
-const WOW = new Game({
-    name: 'World of Warcraft'
-})
-WOW.save().then(() => {
-    console.log('Game saved in db')
-}).catch(err => {
-    console.log(err,'Not saved')
-})
+// const WOW = new Game({
+//     name: 'World of Warcraft'
+// })
+// WOW.save().then(() => {
+//     console.log('Game saved in db')
+// }).catch(err => {
+//     console.log(err,'Not saved')
+// })
