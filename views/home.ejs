@@ -12,13 +12,12 @@
 <body>
     </style>
     <h1><u>Games --></u></h1>
-    <img src="images/Minecraft.jpg" alt="sss">
-    <% for (const game of games) { %> 
+    <% for (let game=0;game<games.length;games++) { %> 
         <section class="games-section">
-            <a href="/<%= game.name %>" target="_blank">
-                    <img src="images/<%= game.name %>.jpg" alt="<%= game.name %>"> 
+            <a href="/<%= games[game].name %>" target="_blank">
+                    <img src="images/<%= games[game].name %>.jpg" alt="<%= games[game].name %>"> 
             </a>
-            <section class="desc"><%= game.name %></section>
+            <section class="desc"><%= games[game].name %></section>
         </section>
     <% } %>
 </body>
