@@ -24,9 +24,24 @@
                 <br> 
             <% } %>
         </ul>
+        <i class="like" onclick="like()"></i>
+        <i class="dislike" onclick="dislike()"></i>
     </section>
     <div class="button">
         <button> <a href="/<%= name%>" style="text-decoration: none; color:greenyellow;"> Back to <%= name %> home page</a></button>
     </div>
+    <script>
+        var color1 = document.getElementsByClassName('like')[0];
+        var color2 = document.getElementsByClassName('dislike')[0];
+        function like() {
+            color1.style.color = color1.style.color === 'blue' ? 'white': 'blue';
+            color2.style.color = 'black';
+        }
+        
+        function dislike() {
+            color1.style.color = 'black';
+            color2.style.color = color2.style.color === 'red' ? 'black' : 'red';
+        }
+    </script>
 </body>
 </html>

@@ -2,9 +2,15 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const methodOverride = require('method-override')
+const mongoSanitize = require('express-mongo-sanitize');
+const session = require('express-session');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/GameReviews', {useNewUrlParser: true, useUnifiedTopology: true})
+const MongoDBStore = require('connect-mongo');
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/GameReviews';
+
+mongoose.connect(dbUrl, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
     console.log('CONNECTION CONFIRMED')
 })
@@ -15,17 +21,53 @@ mongoose.connect('mongodb://localhost:27017/GameReviews', {useNewUrlParser: true
 
 
 
+
 const { uniqueNamesGenerator, adjectives, animals } = require('unique-names-generator');
 
 const Game = require('./models/game');
 
 const Review = require('./models/review');
 
+const secret = process.env.SECRET || 'thisisasecret!';
+
+const store = new MongoDBStore({
+    url: dbUrl,
+    secret,
+    touchAfter: 24*60*60
+});
+
+
+
+store.on('error', (err) => {
+    console.log('SESSION STORE ERROR', err)
+})
+
+const sessionConfig = {
+    store,
+    name: 'session',
+    secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        // secure: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
+
+
+
+
 
 app.set('views',path.join(__dirname,'views'))
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
+app.use(session(sessionConfig))
+app.use(mongoSanitize({
+    replaceWith: '_'
+}))
 
 
 app.use(express.static(__dirname + '/public'));
