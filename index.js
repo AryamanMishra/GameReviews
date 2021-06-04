@@ -6,7 +6,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const session = require('express-session');
 
 const mongoose = require('mongoose');
-const MongoDBStore = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/GameReviews';
 
@@ -28,24 +28,44 @@ const Game = require('./models/game');
 
 const Review = require('./models/review');
 
-const secret = process.env.SECRET || 'thisisasecret!';
+//const secret = process.env.SECRET || 'thisisasecret!';
 
-const store = new MongoDBStore({
-    url: dbUrl,
-    secret,
-    touchAfter: 24*60*60
-});
+// const store = new MongoStore({
+//     url: dbUrl,
+//     secret,
+//     touchAfter: 24*60*60
+// });
 
 
 
-store.on('error', (err) => {
-    console.log('SESSION STORE ERROR', err)
-})
+// store.on('error', (err) => {
+//     console.log('SESSION STORE ERROR', err)
+// })
 
-const sessionConfig = {
-    store,
+// const sessionConfig = {
+//     store,
+//     name: 'session',
+//     secret,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         httpOnly: true,
+//         // secure: true,
+//         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+//         maxAge: 1000 * 60 * 60 * 24 * 7
+//     }
+// }
+
+
+
+app.set('views',path.join(__dirname,'views'))
+app.set('view engine','ejs')
+app.use(express.urlencoded({extended:true}))
+app.use(methodOverride('_method'))
+app.use(session({
     name: 'session',
-    secret,
+    secret: process.env.SECRET || 'thisisasecret!',
+    store: MongoStore.create({mongoUrl:dbUrl}),
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -54,23 +74,16 @@ const sessionConfig = {
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
-}
-
-
-
-
-
-app.set('views',path.join(__dirname,'views'))
-app.set('view engine','ejs')
-app.use(express.urlencoded({extended:true}))
-app.use(methodOverride('_method'))
-app.use(session(sessionConfig))
+}))
 app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
 
 app.use(express.static(__dirname + '/public'));
+
+
+
 
 
 app.get('/' ,async(req,res) => {
@@ -113,6 +126,15 @@ app.get('/:game/allReviews', async(req,res) => {
     res.render('allReviews', {name, reviews})
 })
 
-app.listen(3030, () => {
-    console.log('LISTENING ON PORT 3030')
+
+
+app.get('*', (req,res) => {
+    res.send('THIS PAGE DOES NOT EXISTS')
+})
+
+
+
+const port = process.env.PORT || 3030
+app.listen(port, () => {
+    console.log(`LISTENING ON PORT ${port}`)
 })
