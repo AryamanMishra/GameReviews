@@ -12,10 +12,11 @@
 <body>
     </style>
     <h1><u>Games --></u></h1>
+    <h2></a></h2>
     <% for (const game of games) { %> 
         <section class="games-section">
             <a href="/<%= game.name %>" target="_blank">
-                    <img src="/images/<%= game.name %>.jpg" alt="<%= game.name %>"> 
+                    <img src="public/images/<%= game.name %>.jpg" alt="<%= game.name %>"> 
             </a>
             <section class="desc"><%= game.name %></section>
         </section>
