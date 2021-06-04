@@ -12,6 +12,7 @@
 <body>
     </style>
     <h1><u>Games --></u></h1>
+    <h2><%= games %> </h2>
     <% for (let game=0;game<games.length;game++) { %> 
         <section class="games-section">
             <a href="/<%= games[game].name %>" target="_blank">
