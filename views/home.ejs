@@ -13,12 +13,21 @@
     </style>
     <h1><u>Games --></u></h1>
     <% for (let game=0;game<games.length;game++) { %> 
-        <section class="games-section">
-            <a href="/<%= games[game].name %>" target="_blank">
-                    <img src="images/<%= games[game].name %>.jpg" alt="<%= games[game].name %>"> 
-            </a>
-            <section class="desc"><%= games[game].name %></section>
-        </section>
+        <% if (games[game].name == 'gta5') { %>
+            <section class="games-section">
+                <a href="/<%= games[game].name %>" target="_blank">
+                        <img src="images/<%= games[game].name %>.jpg" alt="GTA5"> 
+                </a>
+                <section class="desc">GTA5</section>
+            </section>
+        <% } else { %> 
+            <section class="games-section">
+                <a href="/<%= games[game].name %>" target="_blank">
+                        <img src="images/<%= games[game].name %>.jpg" alt="<%= games[game].name %>"> 
+                </a>
+                <section class="desc"><%= games[game].name %></section>
+            </section>
+        <% } %> 
     <% } %>
 </body>
 </html>
