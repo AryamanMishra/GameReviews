@@ -11,8 +11,10 @@
 </head>
 <body>
     </style>
-    <h1><u>Games --></u></h1>
+    <h1><u>Games --&gt;</u></h1>
     <% for (let game=0;game<games.length;game++) { %> 
+
+        <!-- Made a seperate case to print gta5 in caps due to heroku deploy consideration -->
         <% if (games[game].name == 'gta5') { %>
             <section class="games-section">
                 <a href="/<%= games[game].name %>" target="_blank">
@@ -20,6 +22,8 @@
                 </a>
                 <section class="desc">GTA5</section>
             </section>
+
+        <!-- Rest all cases -->
         <% } else { %> 
             <section class="games-section">
                 <a href="/<%= games[game].name %>" target="_blank">
