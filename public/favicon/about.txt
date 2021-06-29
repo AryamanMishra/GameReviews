@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Red Rose
+- Font Author: Copyright 2018 The Red Rose Project Authors (https://github.com/magictype/redrose)
+- Font Source: http://fonts.gstatic.com/s/redrose/v8/QdVISTYiLBjouPgEUajvsfWwDtc3MH8yrfsDcjSsYUVUjg.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL)
